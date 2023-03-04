@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+		<title>Task 3 BMI calculator</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+			.container *{
+				font-family: 'Lora', serif;
+			}
+			.container{
+				display: flex;
+				justify-content: center;
+			}
+			.inputDiv{
+				display: flex;
+			}
+			
+			.inputCont input{
+				font-size: 50px;
+				height: 100px;
+				width: 100px;
+				border: 0;
+				outline: 0;
+			}
+			#calButton{
+				font-size: 20px;
+				margin-top: 20px;
+				border: 2px solid #f09a59;
+				width: 100%;
+			}
+			#secContainer{
+				display: flex;
+				justify-content: center;
+			}
+			.bmiDisplay{
+				margin-top: -80px;
+				margin-right: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="mainDiv" style="margin-top: 0">
+				<div class="heading"; style="display: flex; justify-content: center;">
+					<h1>BMI</h1>
+				</div>
+				<div class="mainForm">
+					<div class="inputDiv">
+						<div>
+							<h2 style="margin-right: 7em; margin-top: 60px; font-size: 30px">Weight</h2>
+						</div>
+						<div class="inputCont">
+							<input type="text" id="weight" name="weight"  style="color: #f09a59"><br>
+							<h3 style="display: flex; justify-content: center; margin-top: -10px; color: #a39f9e">Kilogram</h3>
+						</div>
+					</div>
+					<div class="inputDiv">
+						<div>
+							<h2 style="margin-right: 7em; margin-top: 60px; font-size: 30px">Height</h2>
+						</div>
+						<div class="inputCont">
+							<input type="text" id="height" name="height"  style="color: black"><br>
+							<h3 style="display: flex; justify-content: center; margin-top: -10px; color: #a39f9e">Centimeter</h3>
+						</div>
+					</div>
+					<div style="display: flex; justify-content: center;">
+						<button onClick="calculate()" id="calButton"><b>Check BMI</b></button>
+					</div>
+				</div>
+				<div style="border: 1px solid #dedfe0; margin-top: 10px; border-radius: 20px;">
+					<div id="secContainer">
+						<div class="bmiDisplay">
+							<p id="bmi" style="font-size: 100px; color: #f09a59">20.8</p>
+						</div>
+						<div class="statusDisplay">
+							<p style="font-size: 50px; margin-top: 40px; color: #a39f9e">BMI</p>
+							<p id="status"  style="font-size: 20px; margin-left: 10px; margin-top: -50px; color: #7cfc00; font-weight: bold">Normal</p>
+						</div>
+					</div>
+					<hr style="margin-top: -70px; margin-left: 20px; margin-right: 20px; border: 2px solid #a39f9e;">
+					<h2 style="text-align: center; color: #a39f9e">Information</h2>
+					<div style="display: flex; justify-content: space-between; margin: 0px 35px 0px 35px;">
+						<h4 style="color: #00FFFF">Underweight</h4>
+						<h4 style="color: #7cfc00">Normal</h4>
+						<h4 style="color: #ff69b4">Overweight</h4>
+					</div>
+					<div style="margin-left: 20px; margin-right: 20px;">
+						<span style="border: 3px solid #00FFFF; border-radius:5px 0px 0px 5px; display: block; width: 32%"></span>
+						<span style="border: 3px solid #7cfc00; display: block; width: 32%; position: inline-block; margin-left: 33.33%; margin-top: -6px"></span>
+						<span style="border: 3px solid #ff69b4; border-radius:0px 5px 5px 0px; display: block; width: 32%; position: inline-block; margin-left: 66.66%; margin-top: -6px"></span>
+					</div>
+					<div style="display: flex; justify-content: space-between; color: #a39f9e; margin-left: 20px; margin-right: 20px;">
+						<h4>16.0</h4>
+						<h4>18.5</h4>
+						<h4>25.0</h4>
+						<h4>40.0</h4>
+					</div>
+					<h5 style="text-align: center">Powered By Abhijit</h5>
+				</div>
+			</div>
+		</div>
+		<script>
+			function calculate(){
+				let weight = document.getElementById("weight").value;
+				let height = document.getElementById("height").value;
+				
+				let w = parseInt(weight);
+				let h = parseInt(height);
+				
+				let res = document.getElementById("bmi");
+				let status = document.querySelector("#status");
+				
+				let bmi = (w / Math.pow((h/100),2)).toFixed(1);
+				res.innerHTML=bmi;
+				
+				if(bmi <18.5){
+					status.innerHTML="Underweight";
+					status.style.color='#00FFFF';
+				}
+				else if(bmi >=18.5 && bmi <25){
+					status.innerHTML="Normal";
+					status.style.color='#7cfc00';
+				}
+				else{
+					status.innerHTML="Overweight";
+					status.style.color='#ff69b4';
+				}
+			}
+		</script>
+	</body>
+</html>
